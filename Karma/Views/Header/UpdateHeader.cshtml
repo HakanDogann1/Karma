@@ -1,0 +1,26 @@
+﻿@model EntityLayer.Concrete.Header
+@{
+    ViewData["Title"] = "UpdateHeader";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<form method="post">
+    <input type="hidden" asp-for="HeaderID"/>
+    <label>Sayfa Başlığı 1</label>
+    <input type="text" class="form-control" asp-for="HeaderTitle1"/>
+    <br />
+    <label>Sayfa Başlığı 2</label>
+    <input type="text" class="form-control" asp-for="HeaderTitle2" />
+    <br />
+    <label>Sayfa Resmi</label>
+    <input type="text" class="form-control" asp-for="HeaderImageUrl" />
+    <br />
+    <label>Statü</label>
+   <select id="status" asp-for="HeaderStatus" class="form-control">
+       <option value="true">Aktif</option>
+       <option value="false">Pasif</option>
+   </select>
+   <br />
+    <button class="btn btn-outline-success">Kaydet</button>
+</form>
+

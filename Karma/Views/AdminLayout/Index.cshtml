@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Html.PartialAsync("PartialHead.cshtml")
+
+<body>
+   
+       
+        @await Html.PartialAsync("PartialSpinner.cshtml")
+       
+       @await Html.PartialAsync("PartialSidebar.cshtml")
+
+        <div class="content">
+           
+            @await Html.PartialAsync("PartialNavbar.cshtml")
+                        @RenderBody()
+            @await Html.PartialAsync("PartialFooter.cshtml")
+        </div>
+           
+           
+        
+       
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+  
+    @await Html.PartialAsync("PartialScript.cshtml")
+
+   
+    
+</body>
+
+</html>

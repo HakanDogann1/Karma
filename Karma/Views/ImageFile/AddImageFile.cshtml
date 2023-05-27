@@ -1,0 +1,19 @@
+﻿@model EntityLayer.Concrete.ImageFile
+@{
+    ViewData["Title"] = "AddImageFile";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<form method="post">
+    <label>Resim Başlığı</label>
+    <input type="text" class="form-control" asp-for="ImageFileTitle" />
+    <br />
+    <label>Resim Url</label>
+    <input type="text" class="form-control" asp-for="ImageFileUrl" />
+   
+    <br />
+    <button class="btn btn-outline-success">Kaydet</button>
+</form>
+
+
+
