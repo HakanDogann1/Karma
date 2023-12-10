@@ -1,4 +1,5 @@
-﻿using Karma.PresentetionLayer.Models.BrandViewModel;
+﻿using Karma.CommonLayer;
+using Karma.PresentetionLayer.Models.BrandViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -45,6 +46,7 @@ namespace Karma.PresentetionLayer.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index");
             }
+           
             return View();
         }
 

@@ -1,6 +1,7 @@
 ﻿using Karma.CommonLayer;
 using Karma.CommonLayer.Enums;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Routing;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Karma.BusinessLayer.Extensions
     public class ControllerExtensions:ControllerBase
     {
         [HttpPost]
-        public IActionResult TPostActionInstance<T>(Response<T> response) where T : class
+        public IActionResult TPostActionInstance<T>(Response < T> response) where T : class
         {
             if(response.ResponseType==ResponseType.Success)
             {
@@ -21,7 +22,15 @@ namespace Karma.BusinessLayer.Extensions
             }
             if (response.ResponseType == ResponseType.ValidationError)
             {
-                return Ok(response.CustomErrors);
+                ModelStateDictionary modelState = new ModelStateDictionary();
+                foreach ( var error in response.CustomErrors)
+                {
+                    
+                    modelState.AddModelError(error.PropertyName, error.Description);
+                }
+
+                return BadRequest(modelState);
+
             }
             return NotFound(response.Message);
         }
