@@ -2,7 +2,8 @@
 {
     public class CreateBrandViewModel
     {
-        public string BrandName { get; set; }
+        public string? BrandName { get; set; }
         public int Piece { get; set; }
+        
     }
 }

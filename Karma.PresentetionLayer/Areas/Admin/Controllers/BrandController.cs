@@ -2,6 +2,7 @@
 using Karma.PresentetionLayer.Models.BrandViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http;
 using System.Text;
 
 namespace Karma.PresentetionLayer.Areas.Admin.Controllers
@@ -11,10 +12,12 @@ namespace Karma.PresentetionLayer.Areas.Admin.Controllers
     public class BrandController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+      
 
         public BrandController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
+            
         }
 
         public async Task<IActionResult> Index()
@@ -30,15 +33,18 @@ namespace Karma.PresentetionLayer.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult CreateBrand()
+        public async Task<IActionResult> CreateBrand()
         {
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> CreateBrand(CreateBrandViewModel request)
         {
+
+           
+
             var client = _httpClientFactory.CreateClient();
-            request.Piece = 100;
+           
             var jsonData = JsonConvert.SerializeObject(request);
             var stringContent = new StringContent(jsonData,Encoding.UTF8,"application/json");
             var response = await client.PostAsync("https://localhost:7015/api/Brand/CreateBrand", stringContent);
@@ -46,7 +52,12 @@ namespace Karma.PresentetionLayer.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index");
             }
-           
+            var jsonData2 = await response.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<Models.CustomError>>(jsonData2);
+            values.ForEach(x =>
+            {
+                ModelState.AddModelError(x.PropertyName, x.Description);
+            });
             return View();
         }
 

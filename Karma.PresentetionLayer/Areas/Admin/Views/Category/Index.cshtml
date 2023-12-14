@@ -1,0 +1,57 @@
+﻿@model List<ResultCategoryViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+            <h5 class="card-title">Kategori Listesi</h5>
+
+<table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Kategori</th>
+                        <th scope="col">Adet</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.Id</th>
+                            <td>@item.CategoryName</td>
+                            <td>@item.Piece</td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="Category" asp-action="UpdateCategory" asp-route-id="@item.Id" class="btn btn-outline-warning">Güncelle</a>
+                    <a asp-area="Admin" asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@item.Id" class="btn btn-outline-danger">Sil</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <br />
+            <a asp-area="Admin" asp-controller="Category" asp-action="CreateCategory" class="btn btn-outline-dark">Ekle</a>
+            <!-- End Default Table Example -->
+<script>
+    window.onload = function () {
+        
+            Swal.fire({
+                title: 'Tebrikler',
+                text: 'Mesajınız Gönderildi! Size en kısa sürede cevap verilecektir.',
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'Tamam',
+            });
+      
+    }
+    
+      
+</script>
+

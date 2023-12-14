@@ -8,6 +8,7 @@ using Karma.DataAccessLayer.Abstract;
 using Karma.DataAccessLayer.UnitOfWork;
 using Karma.DtoLayer.Dtos.BrandDto;
 using Karma.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,6 @@ namespace Karma.BusinessLayer.Concrete
             _uow = uow;
             _updateBrandValidator = updateBrandValidator;
         }
-        // ValidationExtensions ve Validate işlemi yapılacak.
-
         public async Task<Response<CreateBrandDto>> TAddAsync(CreateBrandDto entity)
         {
             var validate = _createBrandValidator.Validate(entity);
@@ -45,14 +44,12 @@ namespace Karma.BusinessLayer.Concrete
             await _uow.CommitAsync();
             return new Response<CreateBrandDto>(entity,"Başarıyla eklendi");
         }
-
         public async Task<Response> TDeleteAsync(int id)
         {
             await _brandDal.DeleteAsync(id);
             await _uow.CommitAsync();
             return new Response("Başarıyla silindi",ResponseType.Success);
         }
-
         public Response<IQueryable<ResultBrandDto>> TGetByFilter(Expression<Func<Brand, bool>> filter)
         {
            var values = _brandDal.GetByFilter(filter);

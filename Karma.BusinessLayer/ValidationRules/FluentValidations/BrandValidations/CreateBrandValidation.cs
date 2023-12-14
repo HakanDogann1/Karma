@@ -14,6 +14,8 @@ namespace Karma.BusinessLayer.ValidationRules.FluentValidations.BrandValidations
         {
             RuleFor(x => x.BrandName).NotEmpty().WithMessage("Marka alanı boş bırakılamaz.");
             RuleFor(x => x.BrandName).MinimumLength(2).WithMessage("Marka en az 2 karakter olmalıdır.");
+            RuleFor(x => x.Piece).NotEmpty().WithMessage("Adet alanı boş bırakılamaz.");
+            RuleFor(x => x.Piece).GreaterThan(10).WithMessage("10 dan büyük olmalıdır.");
         }
     }
 }

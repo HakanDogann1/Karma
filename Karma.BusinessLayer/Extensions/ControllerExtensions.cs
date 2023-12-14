@@ -22,17 +22,11 @@ namespace Karma.BusinessLayer.Extensions
             }
             if (response.ResponseType == ResponseType.ValidationError)
             {
-                ModelStateDictionary modelState = new ModelStateDictionary();
-                foreach ( var error in response.CustomErrors)
-                {
-                    
-                    modelState.AddModelError(error.PropertyName, error.Description);
-                }
-
-                return BadRequest(modelState);
+               
+                return BadRequest(response.CustomErrors) ;
 
             }
-            return NotFound(response.Message);
+            return NotFound(response);
         }
         [HttpPut]
         public IActionResult TPutActionInstance<T>(Response<T> response) where T : class
@@ -43,7 +37,7 @@ namespace Karma.BusinessLayer.Extensions
             }
             if (response.ResponseType == ResponseType.ValidationError)
             {
-                return Ok(response.CustomErrors);
+                return BadRequest(response.CustomErrors);
             }
             return NotFound(response.Message);
         }
