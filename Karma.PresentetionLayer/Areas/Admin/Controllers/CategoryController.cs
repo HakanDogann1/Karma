@@ -20,7 +20,6 @@ namespace Karma.PresentetionLayer.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            TempData["Silindi"] = "asd";
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync("https://localhost:7015/api/Category/GetList");
             if(response.IsSuccessStatusCode)
@@ -47,6 +46,7 @@ namespace Karma.PresentetionLayer.Areas.Admin.Controllers
             var response = await client.PostAsync("https://localhost:7015/api/Category/CreateCategory", stringContent);
             if (response.IsSuccessStatusCode)
             {
+                TempData["Eklendi"] = "Kategori eklendi.";
                 return RedirectToAction(nameof(Index));
             }
             var jsonErrorData = await response.Content.ReadAsStringAsync();
@@ -76,6 +76,7 @@ namespace Karma.PresentetionLayer.Areas.Admin.Controllers
             var response = await client.PutAsync("https://localhost:7015/api/Category/UpdateCategory",stringContent);
             if(response.IsSuccessStatusCode)
             {
+                TempData["Güncellendi"] = "Kategori güncellendi.";
                 return RedirectToAction(nameof(Index));
             }
             var errorJsonData = await response.Content.ReadAsStringAsync();

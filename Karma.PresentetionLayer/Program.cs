@@ -1,7 +1,9 @@
+using Karma.DataAccessLayer.Context;
+using Karma.EntityLayer.Concrete;
 using Karma.PresentetionLayer.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddDbContext<KarmaDbContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 CustomExtensions.CustomConigurationExtensions(builder.Services);
@@ -19,7 +21,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

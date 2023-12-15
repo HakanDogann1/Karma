@@ -8,7 +8,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
-
             <h5 class="card-title">Kategori Listesi</h5>
 
 <table class="table table-striped">
@@ -37,21 +36,44 @@
                 </tbody>
             </table>
             <br />
-            <a asp-area="Admin" asp-controller="Category" asp-action="CreateCategory" class="btn btn-outline-dark">Ekle</a>
+            <a onclick="ekle()" class="btn btn-outline-dark">Ekle</a>
             <!-- End Default Table Example -->
-<script>
-    window.onload = function () {
-        
-            Swal.fire({
-                title: 'Tebrikler',
-                text: 'Mesajınız Gönderildi! Size en kısa sürede cevap verilecektir.',
-                icon: 'success',
-                showCancelButton: false,
-                confirmButtonText: 'Tamam',
-            });
-      
-    }
-    
-      
-</script>
+@if (TempData["Silindi"] != null)
+{
+    <script>
+        Swal.fire({
+            title: 'Başarılı',
+            text: 'Veri silindi',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonText: 'Tamam',
+        });
+    </script>
 
+}
+@if (TempData["Eklendi"] != null)
+{
+    <script>
+        Swal.fire({
+            title: 'Başarılı',
+            text: ' eklendi',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonText: 'Tamam',
+        });
+    </script>
+
+}
+@if (TempData["Güncellendi"] != null)
+{
+    <script>
+        Swal.fire({
+            title: 'Başarılı',
+            text: 'Veri güncellendi',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonText: 'Tamam',
+        });
+    </script>
+
+}

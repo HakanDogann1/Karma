@@ -5,6 +5,7 @@ using Karma.BusinessLayer.Extensions;
 using Karma.CommonLayer.Enums;
 using Karma.DtoLayer.Dtos.BrandDto;
 using Karma.DtoLayer.Dtos.CategoryDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

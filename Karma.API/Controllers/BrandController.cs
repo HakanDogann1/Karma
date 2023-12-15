@@ -5,11 +5,13 @@ using Karma.BusinessLayer.Abstract;
 using Karma.BusinessLayer.Extensions;
 using Karma.CommonLayer.Enums;
 using Karma.DtoLayer.Dtos.BrandDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Karma.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class BrandController : ControllerExtensions

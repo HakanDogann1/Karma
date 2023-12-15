@@ -8,6 +8,7 @@ using Karma.BusinessLayer.ValidationRules.FluentValidations.NumberValidations;
 using Karma.BusinessLayer.ValidationRules.FluentValidations.ShoeValidations;
 using Karma.BusinessLayer.ValidationRules.FluentValidations.TasteShoeValidations;
 using Karma.DataAccessLayer.Abstract;
+using Karma.DataAccessLayer.Concrete;
 using Karma.DataAccessLayer.Context;
 using Karma.DataAccessLayer.EntityFramework;
 using Karma.DataAccessLayer.UnitOfWork;
@@ -16,6 +17,7 @@ using Karma.DtoLayer.Dtos.CategoryDto;
 using Karma.DtoLayer.Dtos.ColorDto;
 using Karma.DtoLayer.Dtos.NumberDto;
 using Karma.DtoLayer.Dtos.ShoeDto;
+using Karma.EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +38,7 @@ namespace Karma.BusinessLayer.Configurations
                 opt.UseSqlServer(configuration.GetConnectionString("useSql"));
             });
 
+
             services.AddScoped<IBrandDal, EfBrandDal>();
             services.AddScoped<IBrandService, BrandManager>();
 
@@ -50,6 +53,8 @@ namespace Karma.BusinessLayer.Configurations
 
             services.AddScoped<IShoeService, ShoeManager>();
             services.AddScoped<IShoeDal, EfShoeDal>();
+
+          
 
             services.AddScoped<IValidator<CreateBrandDto>, CreateBrandValidation>();
             services.AddScoped<IValidator<UpdateBrandDto>, UpdateBrandValidation>();

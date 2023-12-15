@@ -44,6 +44,8 @@ namespace Karma.BusinessLayer.Mapping.AutoMapper
             CreateMap<ResultTasteShoeDto,TasteShoe>().ReverseMap();
             CreateMap<CreateTasteShoeDto,TasteShoe>().ReverseMap();
             CreateMap<UpdateTasteShoeDto,TasteShoe>().ReverseMap();
+
+          
         }
     }
 }

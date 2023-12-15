@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Karma.DataAccessLayer.Context;
+using Karma.EntityLayer.Concrete;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Karma.PresentetionLayer.Extensions
 {
@@ -6,7 +8,9 @@ namespace Karma.PresentetionLayer.Extensions
     {
         public static void CustomConigurationExtensions(this IServiceCollection services)
         {
-            services.AddHttpClient();
-        }
+			
+			services.AddHttpClient();
+			services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<KarmaDbContext>();
+		}
     }
 }

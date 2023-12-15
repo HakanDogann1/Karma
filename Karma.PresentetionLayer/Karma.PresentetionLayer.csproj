@@ -12,11 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Karma.CommonLayer\Karma.CommonLayer.csproj" />
+    <ProjectReference Include="..\Karma.DataAccessLayer\Karma.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\Karma.EntityLayer\Karma.EntityLayer.csproj" />
   </ItemGroup>
 
 </Project>

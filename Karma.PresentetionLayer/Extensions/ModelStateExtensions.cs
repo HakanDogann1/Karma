@@ -1,4 +1,5 @@
 ﻿using Karma.PresentetionLayer.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Karma.PresentetionLayer.Extensions
@@ -24,5 +25,17 @@ namespace Karma.PresentetionLayer.Extensions
                 modelState.AddModelError(error.PropertyName, error.Description);
             }
         }
+        public static void AddModelErrorList(this ModelStateDictionary modelState, List<IdentityResult> identityResult)
+        {
+
+            identityResult.ForEach(identity =>
+            {
+                foreach (var item in identity.Errors)
+                {
+                    modelState.AddModelError(string.Empty, item.Description);
+                }
+            });
+        }
+
     }
 }

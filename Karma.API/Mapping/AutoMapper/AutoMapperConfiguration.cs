@@ -30,6 +30,8 @@ namespace Karma.API.Mapping.AutoMapper
 
             CreateMap<CreateShoeDto, CreateShoeViewModel>().ReverseMap();
             CreateMap<UpdateShoeDto, UpdateShoeViewModel>().ReverseMap();
+
+         
         }
     }
 }
