@@ -1,0 +1,34 @@
+﻿@model List<RoleListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h5 class="card-title">Rol Listesi</h5>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Rol Adı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-area="Admin" asp-controller="Role" asp-action="RoleUpdate" asp-route-id="@item.Id" class="btn btn-outline-warning">Güncelle</a>
+                    <a asp-area="Admin" asp-controller="Role" asp-action="RoleDelete" asp-route-id="@item.Id" class="btn btn-outline-danger">Sil</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<br />
+<a asp-area="Admin" asp-controller="Role" asp-action="RoleCreate" class="btn btn-outline-dark">Ekle</a>
+<!-- End Default Table Example -->
+

@@ -1,0 +1,29 @@
+﻿@model RoleCreateViewModel
+@{
+    ViewData["Title"] = "RoleCreate";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h5 class="card-title">Rol Ekle</h5>
+
+<!-- General Form Elements -->
+<form asp-area="Admin" asp-controller="Role" asp-action="RoleCreate" method="post">
+    <div class="row mb-3">
+        <label for="inputText" class="col-sm-2 col-form-label">Rol Adı</label>
+        <div class="col-sm-10">
+            <input type="text" asp-for="Name" class="form-control">
+        </div>
+
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <br />
+    <button class="btn btn-outline-dark">Rol Ekle</button>
+
+</form>
+
+
+
+<br />
+<div asp-validation-summary="All"></div>
+
+

@@ -1,12 +1,13 @@
 using Karma.DataAccessLayer.Context;
 using Karma.EntityLayer.Concrete;
 using Karma.PresentetionLayer.Extensions;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<KarmaDbContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-CustomExtensions.CustomConigurationExtensions(builder.Services);
+CustomExtensions.CustomConigurationExtensions(builder.Services,builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -16,6 +17,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+app.UseStatusCodePagesWithReExecute("/ErrorPage/NotFound", "?code={0}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -26,7 +28,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=HomePage}/{action=Index}/{id?}");
 
 app.UseEndpoints(endpoints =>
 {

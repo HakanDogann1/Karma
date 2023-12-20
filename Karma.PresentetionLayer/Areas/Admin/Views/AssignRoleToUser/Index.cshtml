@@ -1,0 +1,34 @@
+﻿@model List<AssignRoleToUserModelView>
+@{
+    ViewData["Title"] = "Index";
+    // Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<h5 class="card-title">Rol Ata</h5>
+
+<!-- General Form Elements -->
+<form asp-area="Admin" asp-controller="AssignRoleToUser" asp-action="Index" method="post">
+    @for(int i = 0; i < Model.Count; i++)
+    {
+        <div class="row mb-3">
+            
+            <div class="col-sm-10">
+                <label  class="form-check-label">@Model[i].Name</label>
+                <input type="checkbox" asp-for="@Model[i].Exist" class="form-check-input">
+                <input type="hidden" asp-for="@Model[i].Name"/>
+                <input type="hidden" asp-for="@Model[i].Id"/>
+            </div>
+
+        </div>
+    }
+   
+    <br />
+    <button class="btn btn-outline-dark">Rol Ekle</button>
+
+</form>
+
+
+
+<br />
+<div asp-validation-summary="All"></div>
+
+

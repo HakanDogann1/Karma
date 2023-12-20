@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Karma.DataAccessLayer.Migrations
 {
     [DbContext(typeof(KarmaDbContext))]
-    [Migration("20231210180252_mig2")]
-    partial class mig2
+    [Migration("20231216094857_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

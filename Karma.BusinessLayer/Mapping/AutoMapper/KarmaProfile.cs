@@ -4,7 +4,10 @@ using Karma.DtoLayer.Dtos.BrandDto;
 using Karma.DtoLayer.Dtos.CategoryDto;
 using Karma.DtoLayer.Dtos.ColorDto;
 using Karma.DtoLayer.Dtos.CommentDto;
+using Karma.DtoLayer.Dtos.ContactDto;
+using Karma.DtoLayer.Dtos.NewCollectionDto;
 using Karma.DtoLayer.Dtos.NumberDto;
+using Karma.DtoLayer.Dtos.ServiceDto;
 using Karma.DtoLayer.Dtos.ShoeDto;
 using Karma.DtoLayer.Dtos.TasteShoeDto;
 using Karma.EntityLayer.Concrete;
@@ -45,7 +48,19 @@ namespace Karma.BusinessLayer.Mapping.AutoMapper
             CreateMap<CreateTasteShoeDto,TasteShoe>().ReverseMap();
             CreateMap<UpdateTasteShoeDto,TasteShoe>().ReverseMap();
 
-          
-        }
+            CreateMap<CreateServiceDto, Service>().ReverseMap();
+            CreateMap<UpdateServiceDto, Service>().ReverseMap();
+            CreateMap<ResultServiceDto, Service>().ReverseMap();
+
+			CreateMap<CreateContactDto, Contact>().ReverseMap();
+			CreateMap<UpdateContactDto, Contact>().ReverseMap();
+			CreateMap<ResultContactDto, Contact>().ReverseMap();
+
+			CreateMap<CreateNewCollectionDto, NewCollection>().ReverseMap();
+			CreateMap<UpdateNewCollectionDto, NewCollection>().ReverseMap();
+			CreateMap<ResultNewCollectionDto, NewCollection>().ReverseMap();
+
+
+		}
     }
 }

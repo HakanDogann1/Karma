@@ -11,5 +11,6 @@ namespace Karma.EntityLayer.Concrete
     {
         public string BrandName { get; set; }
         public int Piece { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

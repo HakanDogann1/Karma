@@ -53,7 +53,7 @@ namespace Karma.PresentetionLayer.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             var jsonData2 = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<Models.CustomError>>(jsonData2);
+            var values = JsonConvert.DeserializeObject<List<CustomError>>(jsonData2);
             values.ForEach(x =>
             {
                 ModelState.AddModelError(x.PropertyName, x.Description);

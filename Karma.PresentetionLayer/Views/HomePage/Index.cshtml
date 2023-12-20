@@ -1,0 +1,24 @@
+﻿
+@{
+	Layout = "~/Views/Shared/_KarmaLayout.cshtml";
+}
+
+@await Component.InvokeAsync("HomePageBannerViewComponent");
+<!-- start features Area -->
+@await Component.InvokeAsync("HomePageStartFeatureViewComponent")
+<!-- end features Area -->
+<!-- Start category Area -->
+@await Component.InvokeAsync("HomePageCategoryViewComponent")
+<!-- End category Area -->
+<!-- start product Area -->
+@await Component.InvokeAsync("HomePageProductViewComponent")
+<!-- end product Area -->
+<!-- Start exclusive deal Area -->
+@await Component.InvokeAsync("HomePageExclusiveViewComponent")
+<!-- End exclusive deal Area -->
+<!-- Start brand Area -->
+@await Component.InvokeAsync("HomePageBrandViewComponent")
+<!-- End brand Area -->
+<!-- Start related-product Area -->
+@await Component.InvokeAsync("HomePageRelatedProductViewModel")
+<!-- End related-product Area -->

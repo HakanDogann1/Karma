@@ -30,6 +30,10 @@ namespace Karma.DataAccessLayer.Context
         //}
 
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<NewCollection> NewCollections { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Image> Images { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Color> Colors { get; set; }

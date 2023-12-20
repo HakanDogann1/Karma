@@ -13,5 +13,7 @@ namespace Karma.EntityLayer.Concrete
         public string Surname { get; set; }
         public string? Address { get; set; }
         public string? Puan { get; set; }
+        public string? Image { get; set; }
+        public string? City { get; set; }
     }
 }

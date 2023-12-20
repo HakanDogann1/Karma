@@ -1,0 +1,30 @@
+﻿@model List<ClaimViewModel>
+@{
+    ViewData["Title"] = "Claims";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h5 class="card-title">Claim Listesi</h5>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Issuer</th>
+            <th scope="col">Type</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Issuer</th>
+                <td>@item.Type</td>
+                <td>@item.Value</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<br />
+

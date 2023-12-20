@@ -19,11 +19,17 @@ namespace Karma.EntityLayer.Concrete
 
         public string Description { get; set; }
         public int Stock { get; set; }
-        public decimal Price{ get; set; }
+        
         public int Width{ get; set; }
         public int Height{ get; set; }
         public int Depth{ get; set; }
         public int NumberId { get; set; }
         public Number Number { get; set; }
+
+		public decimal Price { get; set; }
+		public decimal? NewPrice { get; set; }
+
+        public List<NewCollection> NewCollections { get; set; }
+        public List<Image> Images { get; set; }
     }
 }

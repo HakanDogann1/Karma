@@ -1,0 +1,24 @@
+﻿@model List<ResultServiceViewModel>
+<!-- start features Area -->
+<section class="features-area section_gap">
+	<div class="container">
+		<div class="row features-inner">
+			<!-- single features -->
+			@foreach (var item in Model)
+			{
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="@item.Icon" alt="">
+						</div>
+						<h6>@item.Title</h6>
+						<p>@item.Description</p>
+					</div>
+				</div>
+			}
+			
+			
+		</div>
+	</div>
+</section>
+<!-- end features Area -->

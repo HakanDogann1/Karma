@@ -111,7 +111,7 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Login/Register</h1>
+					<h1>Kayıt Ol</h1>
 					<nav class="d-flex align-items-center">
 						<a href="index.html">Anasayfa<span class="lnr lnr-arrow-right"></span></a>
 						<a href="category.html">Kayıt Ol</a>
@@ -132,30 +132,57 @@
 						<div class="hover">
 							<h4>Web sitemizde yeni misiniz?</h4>
 							<p>Bilim ve teknolojide her gün ilerlemeler kaydediliyor ve bunun güzel bir örneği</p>
-							<a class="primary-btn" href="registration.html">Bir hesabınız var mı?</a>
+							<a class="primary-btn" href="/SignIn/Index/">Bir hesabınız var mı?</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner">
-						<h3>Log in to enter</h3>
-						<form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+						<h3>Kayıt Ol</h3>
+						@if (ViewBag.success != null)
+						{
+							<div class="alert-success">
+								Kayıt işlemi başarılı
+							</div>
+						}
+						
+						<form class="row login_form" method="post" asp-controller="SignUp" asp-action="Index">
+							<div class="text-danger" asp-validation-summary="All">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="text" class="form-control" asp-for="Name" placeholder="Ad" onfocus="this.placeholder = ''">
+								<span class="text-danger" asp-validation-for="Name"></span>
 							</div>
 							<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
-								</div>
+								<input type="text" class="form-control"  asp-for="Surname" placeholder="Soyad" onfocus="this.placeholder = ''">
+								<span class="text-danger" asp-validation-for="Surname"></span>
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">Log In</button>
-								<a href="#">Forgot Password?</a>
+								<input type="text" class="form-control" asp-for="Email" placeholder="Email" onfocus="this.placeholder = ''">
+								<span class="text-danger" asp-validation-for="Email"></span>
 							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" asp-for="UserName" placeholder="Kullanıcı Adı" onfocus="this.placeholder = ''">
+								<span class="text-danger" asp-validation-for="UserName"></span>
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Telefon Numarası" onfocus="this.placeholder = ''">
+								<span class="text-danger" asp-validation-for="PhoneNumber"></span>
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" asp-for="Password" placeholder="Şifre" onfocus="this.placeholder = ''">
+								<span class="text-danger" asp-validation-for="Password"></span>
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" asp-for="PasswordConfirm" placeholder="Şifre Tekrar" onfocus="this.placeholder = ''">
+								<span class="text-danger" asp-validation-for="PasswordConfirm"></span>
+							</div>
+							
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="primary-btn">Kayıt Ol</button>
+							</div>
+
+							
 						</form>
 					</div>
 				</div>

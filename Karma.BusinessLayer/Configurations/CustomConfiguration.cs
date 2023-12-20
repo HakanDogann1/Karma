@@ -4,7 +4,11 @@ using Karma.BusinessLayer.Concrete;
 using Karma.BusinessLayer.ValidationRules.FluentValidations.BrandValidations;
 using Karma.BusinessLayer.ValidationRules.FluentValidations.CategoryValidations;
 using Karma.BusinessLayer.ValidationRules.FluentValidations.ColorValidations;
+using Karma.BusinessLayer.ValidationRules.FluentValidations.ContactValidations;
+using Karma.BusinessLayer.ValidationRules.FluentValidations.ImageValidations;
+using Karma.BusinessLayer.ValidationRules.FluentValidations.NewCollectionValidations;
 using Karma.BusinessLayer.ValidationRules.FluentValidations.NumberValidations;
+using Karma.BusinessLayer.ValidationRules.FluentValidations.ServiceValidations;
 using Karma.BusinessLayer.ValidationRules.FluentValidations.ShoeValidations;
 using Karma.BusinessLayer.ValidationRules.FluentValidations.TasteShoeValidations;
 using Karma.DataAccessLayer.Abstract;
@@ -15,7 +19,11 @@ using Karma.DataAccessLayer.UnitOfWork;
 using Karma.DtoLayer.Dtos.BrandDto;
 using Karma.DtoLayer.Dtos.CategoryDto;
 using Karma.DtoLayer.Dtos.ColorDto;
+using Karma.DtoLayer.Dtos.ContactDto;
+using Karma.DtoLayer.Dtos.ImageDto;
+using Karma.DtoLayer.Dtos.NewCollectionDto;
 using Karma.DtoLayer.Dtos.NumberDto;
+using Karma.DtoLayer.Dtos.ServiceDto;
 using Karma.DtoLayer.Dtos.ShoeDto;
 using Karma.EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -54,9 +62,20 @@ namespace Karma.BusinessLayer.Configurations
             services.AddScoped<IShoeService, ShoeManager>();
             services.AddScoped<IShoeDal, EfShoeDal>();
 
-          
+            services.AddScoped<IServiceDal, EfServiceDal>();
+            services.AddScoped<IServiceService, ServiceManager>();
 
-            services.AddScoped<IValidator<CreateBrandDto>, CreateBrandValidation>();
+			services.AddScoped<IContactDal, EfContactDal>();
+			services.AddScoped<IContactService, ContactManager>();
+
+			services.AddScoped<INewCollectionDal, EfNewCollectionDal>();
+			services.AddScoped<INewCollectionService, NewCollectionManager>();
+
+			services.AddScoped<IImageDal, EfImageDal>();
+			services.AddScoped<IImageService, ImageManager>();
+
+
+			services.AddScoped<IValidator<CreateBrandDto>, CreateBrandValidation>();
             services.AddScoped<IValidator<UpdateBrandDto>, UpdateBrandValidation>();
 
             services.AddScoped<IValidator<CreateNumberDto>, CreateNumberValidator>();
@@ -70,7 +89,20 @@ namespace Karma.BusinessLayer.Configurations
 
             services.AddScoped<IValidator<CreateShoeDto>, CreateShoeValidator>();
             services.AddScoped<IValidator<UpdateShoeDto>, UpdateShoeValidator>();
-            services.AddScoped<IUow, Uow>();
+
+			services.AddScoped<IValidator<CreateServiceDto>, CreateServiceValidator>();
+			services.AddScoped<IValidator<UpdateServiceDto>, UpdateServiceValidator>();
+
+			services.AddScoped<IValidator<CreateContactDto>, CreateContactValidator>();
+			services.AddScoped<IValidator<UpdateContactDto>, UpdateContactValidator>();
+
+			services.AddScoped<IValidator<CreateNewCollectionDto>, CreateNewCollectionValidator>();
+			services.AddScoped<IValidator<UpdateNewCollectionDto>, UpdateNewCollectionValidator>();
+
+			services.AddScoped<IValidator<CreateImageDto>, CreateImageValidator>();
+			services.AddScoped<IValidator<UpdateImageDto>, UpdateImageValidator>();
+
+			services.AddScoped<IUow, Uow>();
 
 
         }

@@ -66,6 +66,9 @@ namespace Karma.DataAccessLayer.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -76,6 +79,9 @@ namespace Karma.DataAccessLayer.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -175,6 +181,10 @@ namespace Karma.DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Piece")
                         .HasColumnType("int");
 
@@ -260,6 +270,83 @@ namespace Karma.DataAccessLayer.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("Karma.EntityLayer.Concrete.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("Karma.EntityLayer.Concrete.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ShoeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShoeId");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Karma.EntityLayer.Concrete.NewCollection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ShoeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShoeId");
+
+                    b.ToTable("NewCollections");
+                });
+
             modelBuilder.Entity("Karma.EntityLayer.Concrete.Number", b =>
                 {
                     b.Property<int>("Id")
@@ -274,6 +361,31 @@ namespace Karma.DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Numbers");
+                });
+
+            modelBuilder.Entity("Karma.EntityLayer.Concrete.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("Karma.EntityLayer.Concrete.Shoe", b =>
@@ -302,6 +414,9 @@ namespace Karma.DataAccessLayer.Migrations
 
                     b.Property<int>("Height")
                         .HasColumnType("int");
+
+                    b.Property<decimal?>("NewPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("NumberId")
                         .HasColumnType("int");
@@ -496,6 +611,28 @@ namespace Karma.DataAccessLayer.Migrations
                     b.Navigation("Shoe");
                 });
 
+            modelBuilder.Entity("Karma.EntityLayer.Concrete.Image", b =>
+                {
+                    b.HasOne("Karma.EntityLayer.Concrete.Shoe", "Shoe")
+                        .WithMany("Images")
+                        .HasForeignKey("ShoeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Shoe");
+                });
+
+            modelBuilder.Entity("Karma.EntityLayer.Concrete.NewCollection", b =>
+                {
+                    b.HasOne("Karma.EntityLayer.Concrete.Shoe", "Shoe")
+                        .WithMany("NewCollections")
+                        .HasForeignKey("ShoeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Shoe");
+                });
+
             modelBuilder.Entity("Karma.EntityLayer.Concrete.Shoe", b =>
                 {
                     b.HasOne("Karma.EntityLayer.Concrete.Brand", "Brand")
@@ -599,6 +736,13 @@ namespace Karma.DataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Karma.EntityLayer.Concrete.Shoe", b =>
+                {
+                    b.Navigation("Images");
+
+                    b.Navigation("NewCollections");
                 });
 #pragma warning restore 612, 618
         }
